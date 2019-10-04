@@ -19,7 +19,7 @@ public class RestAssuredExtension {
     public RestAssuredExtension() {
         //Arrange
         RequestSpecBuilder builder = new RequestSpecBuilder();
-        builder.setBaseUri("http://localhost:3000");
+        builder.setBaseUri("http://localhost:3000/");
         builder.setContentType(ContentType.JSON);
         var requestSpec = builder.build();
         Request = RestAssured.given().spec(requestSpec);
@@ -93,7 +93,9 @@ public class RestAssuredExtension {
         return Request.get(url);
     }
 
-
-
-
+    public static ResponseOptions<Response> GetWithQueryParamsWithToken(String url,Map<String, String> queryParams, String token)  {
+        Request.header(new Header("Authorization", "Bearer " + token));
+        Request.queryParams(queryParams);
+        return Request.get(url);
+    }
 }

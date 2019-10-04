@@ -13,4 +13,3 @@ Feature: PUTPost
       | postid |
       | 6      |
     Then I "should" see the body with title as "API Testing Guide"
-
