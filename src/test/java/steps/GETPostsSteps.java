@@ -9,6 +9,7 @@ import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import pojo.Address;
 import pojo.Location;
+import pojo.LoginBody;
 import pojo.Posts;
 import utilities.APIConstant;
 import utilities.RestAssuredExtension;
@@ -59,12 +60,16 @@ public class GETPostsSteps {
 
         var data = table.raw();
 
-        HashMap<String, String> body = new HashMap<>();
-        body.put("email", data.get(1).get(0));
-        body.put("password", data.get(1).get(1));
+//        HashMap<String, String> body = new HashMap<>();
+//        body.put("email", data.get(1).get(0));
+//        body.put("password", data.get(1).get(1));
+
+        LoginBody loginBody = new LoginBody();
+        loginBody.setEmail(data.get(1).get(0));
+        loginBody.setPassword(data.get(1).get(1));
 
         RestAssuredExtensionv2 restAssuredExtensionv2 = new RestAssuredExtensionv2(uri, APIConstant.ApiMethods.POST,null);
-        token = restAssuredExtensionv2.Authenticate(body);
+        token = restAssuredExtensionv2.Authenticate(loginBody);
 
         //response = RestAssuredExtension.PostOpsWithBody(url, body);
     }

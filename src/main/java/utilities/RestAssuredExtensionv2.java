@@ -55,7 +55,7 @@ public class RestAssuredExtensionv2 {
      * @param body
      * @return string token
      */
-    public String Authenticate(Map<String, String> body) {
+    public String Authenticate(Object body) {
         builder.setBody(body);
         return ExecuteAPI().getBody().jsonPath().get("access_token");
     }
