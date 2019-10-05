@@ -25,27 +25,7 @@ public class RestAssuredExtension {
         Request = RestAssured.given().spec(requestSpec);
     }
 
-    public static void GetOpsWithPathParameter(String url, Map<String, String> pathParams) {
-        //Act
-        Request.pathParams(pathParams);
-        try {
-            Request.get(new URI(url));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static ResponseOptions<Response> GetOps(String url) {
-        //Act
-        try {
-            return Request.get(new URI(url));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static ResponseOptions<Response> GetOpsWithToken(String url, String token) {
+     public static ResponseOptions<Response> GetOpsWithToken(String url, String token) {
         //Act
         try {
             Request.header(new Header("Authorization", "Bearer " + token));
@@ -60,16 +40,6 @@ public class RestAssuredExtension {
         Request.pathParams(pathParams);
         Request.body(body);
         return Request.put(url);
-    }
-
-    public ResponseOptions<Response> GetOpsQueryParams(String url, String queryParams) {
-        try {
-            Request.queryParam(queryParams);
-            return Request.get(new URI(url));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public static ResponseOptions<Response> PostOpsWithBodyAndPathParams(String url, Map<String, String> pathParams, Map<String, String> body)  {

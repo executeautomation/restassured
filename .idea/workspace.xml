@@ -56,7 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Cucumber java.Scenario: Verify GET operation with bearer authentication token for json schema validation">
+  <component name="RunManager" selected="Cucumber java.Scenario: Verify GET operation for complex data">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -197,9 +197,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Cucumber java.Scenario: Verify GET operation for complex data" />
         <item itemvalue="Cucumber java.Scenario: Verify GET operation with bearer authentication token for json schema validation" />
         <item itemvalue="Cucumber java.Scenario: Verify GET operation with bearer authentication token (1)" />
-        <item itemvalue="Cucumber java.Scenario: Verify GET operation for complex data" />
         <item itemvalue="Cucumber java.Scenario: Verify PUT operation after POST" />
         <item itemvalue="Cucumber java.Scenario: Verify DELETE operation after POST" />
       </list>
@@ -217,5 +217,16 @@
       <updated>1538964072736</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/steps/GETPostsSteps.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

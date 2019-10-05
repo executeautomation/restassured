@@ -10,7 +10,9 @@ import io.restassured.response.ResponseOptions;
 import pojo.Address;
 import pojo.Location;
 import pojo.Posts;
+import utilities.APIConstant;
 import utilities.RestAssuredExtension;
+import utilities.RestAssuredExtensionv2;
 
 import javax.xml.crypto.Data;
 import java.util.HashMap;
@@ -25,6 +27,7 @@ public class GETPostsSteps {
 
 
     public static ResponseOptions<Response> response;
+    public static String token;
 
     @Given("^I perform GET operation for \"([^\"]*)\"$")
     public void iPerformGETOperationFor(String url) throws Throwable {
@@ -52,18 +55,22 @@ public class GETPostsSteps {
 
 
     @Given("^I perform authentication operation for \"([^\"]*)\" with body$")
-    public void iPerformAuthenticationOperationForWithBody(String url, DataTable table) throws Throwable {
+    public void iPerformAuthenticationOperationForWithBody(String uri, DataTable table) throws Throwable {
 
         var data = table.raw();
 
         HashMap<String, String> body = new HashMap<>();
         body.put("email", data.get(1).get(0));
         body.put("password", data.get(1).get(1));
-        response = RestAssuredExtension.PostOpsWithBody(url, body);
+
+        RestAssuredExtensionv2 restAssuredExtensionv2 = new RestAssuredExtensionv2(uri, APIConstant.ApiMethods.POST,null);
+        token = restAssuredExtensionv2.Authenticate(body);
+
+        //response = RestAssuredExtension.PostOpsWithBody(url, body);
     }
 
     @And("^I perform GET operation with path parameter for address \"([^\"]*)\"$")
-    public void iPerformGETOperationWithPathParameterForAddress(String url, DataTable table) throws Throwable {
+    public void iPerformGETOperationWithPathParameterForAddress(String uri, DataTable table) throws Throwable {
 
         var data = table.raw();
 
@@ -71,7 +78,10 @@ public class GETPostsSteps {
         queryParams.put("id", data.get(1).get(0));
 
         //response
-        response = RestAssuredExtension.GetWithQueryParamsWithToken(url, queryParams, response.getBody().jsonPath().get("access_token"));
+        //response = RestAssuredExtension.GetWithQueryParamsWithToken(url, queryParams, response.getBody().jsonPath().get("access_token"));
+
+        RestAssuredExtensionv2 restAssuredExtensionv2 = new RestAssuredExtensionv2(uri,"GET", token );
+        response = restAssuredExtensionv2.ExecuteWithQueryParams(queryParams);
     }
 
 
