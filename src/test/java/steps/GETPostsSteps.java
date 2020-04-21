@@ -1,28 +1,26 @@
 package steps;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
-import pojo.Address;
-import pojo.Location;
-import pojo.LoginBody;
-import pojo.Posts;
+import model.Address;
+import model.Location;
+import model.LoginBody;
+import model.Posts;
 import utilities.APIConstant;
+import utilities.EARestAssuredV2;
 import utilities.RestAssuredExtension;
-import utilities.RestAssuredExtensionv2;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class GETPostsSteps {
 
@@ -32,16 +30,46 @@ public class GETPostsSteps {
 
     @Given("^I perform GET operation for \"([^\"]*)\"$")
     public void iPerformGETOperationFor(String url) throws Throwable {
-        response = RestAssuredExtension.GetOpsWithToken(url, response.getBody().jsonPath().get("access_token"));
+        response = RestAssuredExtension.GetOpsWithToken(url, token);
+    }
+
+    @And("^I perform GET operation with path parameter for address \"([^\"]*)\"$")
+    public void iPerformGETOperationWithPathParameterForAddress(String url, DataTable table) throws Throwable {
+        var data = table.raw();
+
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put("id", data.get(1).get(0));
+
+        //response = RestAssuredExtension.GetWithQueryParamsWithToken(url, pathParams, response.getBody().jsonPath().get("access_token"));
+
+        EARestAssuredV2 eaRestAssuredV2 = new EARestAssuredV2(url,APIConstant.ApiMethods.GET,token);
+        response = eaRestAssuredV2.ExecuteWithQueryParams(queryParams);
     }
 
     @Then("^I should see the author name as \"([^\"]*)\"$")
     public void iShouldSeeTheAuthorNameAs(String authorName) throws Throwable {
 
-        var posts = response.getBody().as(Posts.class);
-        assertThat(posts.getAuthor(), equalTo(authorName));
+        var posts = new Posts.Builder().build();
 
-        //assertThat(response.getBody().jsonPath().get("author"), hasItem("Karthik KK"));
+        var post = response.getBody().as(posts.getClass());
+
+        assertThat(post.getAuthor(), equalTo("Karthik KK"));
+
+        //assertThat(posts[0].getAuthor(), equalTo("Karthik KK"));
+    }
+
+    //Deserialize
+
+    @Then("^I should see the author name as \"([^\"]*)\" with json validation$")
+    public void iShouldSeeTheAuthorNameAsWithJsonValidation(String authorName) throws Throwable {
+
+        var a = response.getBody().asString();
+
+        assertThat(a, matchesJsonSchemaInClasspath("post.json"));
+
+
+
+//        assertThat(response.getBody().jsonPath().get("author"), hasItem("Karthik KK"));
     }
 
     @Then("^I should see the author names$")
@@ -56,7 +84,7 @@ public class GETPostsSteps {
 
 
     @Given("^I perform authentication operation for \"([^\"]*)\" with body$")
-    public void iPerformAuthenticationOperationForWithBody(String uri, DataTable table) throws Throwable {
+    public void iPerformAuthenticationOperationForWithBody(String url, DataTable table) throws Throwable {
 
         var data = table.raw();
 
@@ -68,47 +96,25 @@ public class GETPostsSteps {
         loginBody.setEmail(data.get(1).get(0));
         loginBody.setPassword(data.get(1).get(1));
 
-        RestAssuredExtensionv2 restAssuredExtensionv2 = new RestAssuredExtensionv2(uri, APIConstant.ApiMethods.POST,null);
-        token = restAssuredExtensionv2.Authenticate(loginBody);
+        EARestAssuredV2 eaRestAssuredV2 = new EARestAssuredV2(url, APIConstant.ApiMethods.POST, token);
 
-        //response = RestAssuredExtension.PostOpsWithBody(url, body);
+        //token = eaRestAssuredV2.Authenticate(body);
+
+        token = eaRestAssuredV2.Authenticate(loginBody);
     }
 
-    @And("^I perform GET operation with path parameter for address \"([^\"]*)\"$")
-    public void iPerformGETOperationWithPathParameterForAddress(String uri, DataTable table) throws Throwable {
+    @Then("^I should see the street name as \"([^\"]*)\"$")
+    public void iShouldSeeTheStreetNameAs(String streetName) throws Throwable {
 
-        var data = table.raw();
+        var a = response.getBody().as(Location[].class);
 
-        Map<String, String> queryParams = new HashMap<>();
-        queryParams.put("id", data.get(1).get(0));
-
-        //response
-        //response = RestAssuredExtension.GetWithQueryParamsWithToken(url, queryParams, response.getBody().jsonPath().get("access_token"));
-
-        RestAssuredExtensionv2 restAssuredExtensionv2 = new RestAssuredExtensionv2(uri,"GET", token );
-        response = restAssuredExtensionv2.ExecuteWithQueryParams(queryParams);
-    }
-
-
-    @Then("^I should see the street name as \"([^\"]*)\" for the \"([^\"]*)\" address$")
-    public void iShouldSeeTheStreetNameAsForTheAddress(String streetName, String type) throws Throwable {
-        var location = response.getBody().as(Location[].class);
-
-        // Filter the address based on the type of addresses
-        Address address = location[0].getAddress().stream().filter(x -> x.getType().equalsIgnoreCase(type))
-                .findFirst().orElse(null);
+        Address address = a[0].getAddress().stream().filter(x -> x.getType().equalsIgnoreCase("primary")).findFirst().orElse(null);
 
         assertThat(address.getStreet(), equalTo(streetName));
-    }
 
-    @Then("^I should see the author name as \"([^\"]*)\" with json validation$")
-    public void iShouldSeeTheAuthorNameAsWithJsonValidation(String arg0) throws Throwable {
 
-        //returns the body as string
-        var responseBody = response.getBody().asString();
+//        assertThat(a[0].getAddress().getStreet(), equalTo(streetName));
 
-        //assert
-        assertThat(responseBody, matchesJsonSchemaInClasspath("post.json"));
 
     }
 }

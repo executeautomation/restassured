@@ -6,8 +6,12 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 import io.restassured.response.ResponseOptions;
+import lombok.experimental.ExtensionMethod;
+import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.core.IsNot;
+import utilities.EARestAssuredV2;
 import utilities.RestAssuredExtension;
 
 import javax.xml.crypto.Data;
@@ -87,6 +91,8 @@ public class POSTProfileSteps {
 
         response = RestAssuredExtension.GetWithPathParams(url, pathParams);
     }
+
+
 
     @And("^I Perform PUT operation for \"([^\"]*)\"$")
     public void iPerformPUTOperationFor(String url, DataTable table) throws Throwable {

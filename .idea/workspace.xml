@@ -8,17 +8,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="restassured-master" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>then</find>
-    </findStrings>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -30,11 +28,11 @@
   <component name="ProjectId" id="1RcabjCZgfhouSs8PtxlUF2rAjV" />
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/RestAssuredDemo/src/test/java/steps/MyStepdefs.java" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/RestAssuredGit/restassured-master" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -56,7 +54,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Cucumber java.Scenario: Verify GET operation for complex data">
+  <component name="RunManager" selected="Cucumber java.Scenario: Verify GET operation with bearer authentication token (1)">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -69,15 +67,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Verify DELETE operation after POST" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Feature: GETPosts" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="1.2" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/features/DELETEPost.feature" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/features/GETPosts.feature" />
       <option name="GLUE" value="steps" />
       <option name="MAIN_CLASS_NAME" value="cucumber.api.cli.Main" />
       <module name="RestAssuredDemo" />
-      <option name="NAME_FILTER" value="^Verify DELETE operation after POST$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvmSMFormatter --monochrome --name &quot;^Verify DELETE operation after POST$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Verify DELETE operation after POST" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvmSMFormatter --monochrome" />
+      <option name="SUGGESTED_NAME" value="Feature: GETPosts" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cucumber.api.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Feature: POSTProfile" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="1.2" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/features/POSTProfile.feature" />
+      <option name="GLUE" value="steps" />
+      <option name="MAIN_CLASS_NAME" value="cucumber.api.cli.Main" />
+      <module name="RestAssuredDemo" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvmSMFormatter --monochrome" />
+      <option name="SUGGESTED_NAME" value="Feature: POSTProfile" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cucumber.api.cli.*" />
@@ -126,34 +141,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Verify GET operation with bearer authentication token for json schema validation" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Verify GET operation with json validation" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="1.2" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/features/GETPosts.feature" />
       <option name="GLUE" value="steps" />
       <option name="MAIN_CLASS_NAME" value="cucumber.api.cli.Main" />
       <module name="RestAssuredDemo" />
-      <option name="NAME_FILTER" value="^Verify GET operation with bearer authentication token for json schema validation$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvmSMFormatter --monochrome --name &quot;^Verify GET operation with bearer authentication token for json schema validation$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Verify GET operation with bearer authentication token for json schema validation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cucumber.api.cli.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Scenario: Verify PUT operation after POST" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
-      <option name="CUCUMBER_CORE_VERSION" value="1.2" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/features/PUTPost.feature" />
-      <option name="GLUE" value="steps" />
-      <option name="MAIN_CLASS_NAME" value="cucumber.api.cli.Main" />
-      <module name="RestAssuredDemo" />
-      <option name="NAME_FILTER" value="^Verify PUT operation after POST$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvmSMFormatter --monochrome --name &quot;^Verify PUT operation after POST$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Verify PUT operation after POST" />
+      <option name="NAME_FILTER" value="^Verify GET operation with json validation$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvmSMFormatter --monochrome --name &quot;^Verify GET operation with json validation$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Verify GET operation with json validation" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cucumber.api.cli.*" />
@@ -189,19 +185,19 @@
     </configuration>
     <list>
       <item itemvalue="Cucumber java.Unnamed" />
+      <item itemvalue="Cucumber java.Feature: GETPosts" />
+      <item itemvalue="Cucumber java.Feature: POSTProfile" />
       <item itemvalue="Cucumber java.Scenario: Verify GET operation with bearer authentication token (1)" />
+      <item itemvalue="Cucumber java.Scenario: Verify GET operation with json validation" />
       <item itemvalue="Cucumber java.Scenario: Verify GET operation for complex data" />
-      <item itemvalue="Cucumber java.Scenario: Verify PUT operation after POST" />
-      <item itemvalue="Cucumber java.Scenario: Verify DELETE operation after POST" />
-      <item itemvalue="Cucumber java.Scenario: Verify GET operation with bearer authentication token for json schema validation" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Cucumber java.Scenario: Verify GET operation for complex data" />
-        <item itemvalue="Cucumber java.Scenario: Verify GET operation with bearer authentication token for json schema validation" />
         <item itemvalue="Cucumber java.Scenario: Verify GET operation with bearer authentication token (1)" />
-        <item itemvalue="Cucumber java.Scenario: Verify PUT operation after POST" />
-        <item itemvalue="Cucumber java.Scenario: Verify DELETE operation after POST" />
+        <item itemvalue="Cucumber java.Scenario: Verify GET operation with json validation" />
+        <item itemvalue="Cucumber java.Scenario: Verify GET operation for complex data" />
+        <item itemvalue="Cucumber java.Feature: GETPosts" />
+        <item itemvalue="Cucumber java.Feature: POSTProfile" />
       </list>
     </recent_temporary>
   </component>
@@ -223,8 +219,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/steps/GETPostsSteps.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="4" />
+          <line>115</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/steps/GETPostsSteps.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/steps/GETPostsSteps.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -16,15 +16,15 @@ Feature: GETPosts
   @smoke
   Scenario: Verify GET operation with bearer authentication token
     Given I perform authentication operation for "/auth/login" with body
-      | email             | password |
-      | karthik@email.com | haha123  |
+      | email              | password  |
+      | karthik@email.com | haha123 |
     Given I perform GET operation for "/posts/1"
     Then I should see the author name as "Karthik KK"
 
   @smoke
-  Scenario: Verify GET operation with bearer authentication token for json schema validation
+  Scenario: Verify GET operation with json validation
     Given I perform authentication operation for "/auth/login" with body
-      | email             | password |
-      | karthik@email.com | haha123  |
+      | email              | password  |
+      | karthik@email.com | haha123 |
     Given I perform GET operation for "/posts/1"
     Then I should see the author name as "Karthik KK" with json validation

@@ -25,7 +25,27 @@ public class RestAssuredExtension {
         Request = RestAssured.given().spec(requestSpec);
     }
 
-     public static ResponseOptions<Response> GetOpsWithToken(String url, String token) {
+    public static void GetOpsWithPathParameter(String url, Map<String, String> pathParams) {
+        //Act
+        Request.pathParams(pathParams);
+        try {
+            Request.get(new URI(url));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ResponseOptions<Response> GetOps(String url) {
+        //Act
+        try {
+            return Request.get(new URI(url));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ResponseOptions<Response> GetOpsWithToken(String url, String token) {
         //Act
         try {
             Request.header(new Header("Authorization", "Bearer " + token));
@@ -41,11 +61,24 @@ public class RestAssuredExtension {
         Request.body(body);
         return Request.put(url);
     }
-
     public static ResponseOptions<Response> PostOpsWithBodyAndPathParams(String url, Map<String, String> pathParams, Map<String, String> body)  {
         Request.pathParams(pathParams);
         Request.body(body);
         return Request.post(url);
+    }
+    public static ResponseOptions<Response> DeleteOpsWithPathParams(String url,Map<String, String> pathParams)  {
+        Request.pathParams(pathParams);
+        return Request.delete(url);
+    }
+    public static ResponseOptions<Response> GetWithPathParams(String url,Map<String, String> pathParams)  {
+        Request.pathParams(pathParams);
+        return Request.get(url);
+    }
+
+    public static ResponseOptions<Response> GetWithQueryParamsWithToken(String url,Map<String, String> pathParams, String token)  {
+        Request.header(new Header("Authorization", "Bearer " + token));
+        Request.queryParams(pathParams);
+        return Request.get(url);
     }
 
     public static ResponseOptions<Response> PostOpsWithBody(String url,Map<String, String> body)  {
@@ -53,19 +86,7 @@ public class RestAssuredExtension {
         return Request.post(url);
     }
 
-    public static ResponseOptions<Response> DeleteOpsWithPathParams(String url,Map<String, String> pathParams)  {
-        Request.pathParams(pathParams);
-        return Request.delete(url);
-    }
 
-    public static ResponseOptions<Response> GetWithPathParams(String url,Map<String, String> pathParams)  {
-        Request.pathParams(pathParams);
-        return Request.get(url);
-    }
 
-    public static ResponseOptions<Response> GetWithQueryParamsWithToken(String url,Map<String, String> queryParams, String token)  {
-        Request.header(new Header("Authorization", "Bearer " + token));
-        Request.queryParams(queryParams);
-        return Request.get(url);
-    }
+
 }
